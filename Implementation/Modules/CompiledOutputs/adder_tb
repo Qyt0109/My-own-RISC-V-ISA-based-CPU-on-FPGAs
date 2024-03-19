@@ -1,0 +1,42 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x12570a050 .scope module, "adder_tb" "adder_tb" 2 1;
+ .timescale 0 0;
+v0x12571a080_0 .var "i_A", 31 0;
+v0x12571a130_0 .var "i_B", 31 0;
+v0x12571a1e0_0 .net "o_S", 31 0, L_0x12571a2b0;  1 drivers
+S_0x125706670 .scope module, "uut" "adder" 2 5, 3 1 0, S_0x12570a050;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "i_A";
+    .port_info 1 /INPUT 32 "i_B";
+    .port_info 2 /OUTPUT 32 "o_S";
+v0x125709090_0 .net "i_A", 31 0, v0x12571a080_0;  1 drivers
+v0x125719ec0_0 .net "i_B", 31 0, v0x12571a130_0;  1 drivers
+v0x125719f70_0 .net "o_S", 31 0, L_0x12571a2b0;  alias, 1 drivers
+L_0x12571a2b0 .arith/sum 32, v0x12571a080_0, v0x12571a130_0;
+    .scope S_0x12570a050;
+T_0 ;
+    %vpi_call 2 12 "$dumpfile", "./CompiledOutputs/adder.vcd" {0 0 0};
+    %vpi_call 2 13 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x12570a050 {0 0 0};
+    %pushi/vec4 10, 0, 32;
+    %store/vec4 v0x12571a080_0, 0, 32;
+    %pushi/vec4 20, 0, 32;
+    %store/vec4 v0x12571a130_0, 0, 32;
+    %delay 10, 0;
+    %vpi_call 2 23 "$display", "Result of addition: %d", v0x12571a1e0_0 {0 0 0};
+    %vpi_call 2 26 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "adder_tb.v";
+    "adder.v";
